@@ -1,11 +1,12 @@
 import random
 import optparse
+import os
 
 
 def main():
     """Reads through README.md for question/answer pairs and adds them to a
     list to randomly select from and quiz yourself.
-    Supports skipping quesitons with no documented answer with the -s flag
+    Supports skipping questions with no documented answer with the -s flag
     """
     parser = optparse.OptionParser()
     parser.add_option("-s", "--skip", action="store_true",
@@ -39,9 +40,13 @@ def main():
 
             if options.skip and not answer.strip():
                 continue
-
-            if input(f'Q: {question} ...Show answer? "y" for yes: ').lower() == 'y':
-                print('A: ', answer)
+            os.system("clear")
+            print(question)
+            print("...Press Enter to show answer...")
+            input()
+            print('A: ', answer)
+            print("... Press Enter to continue, Ctrl-C to exit")
+            input()
 
         except KeyboardInterrupt:
             break
